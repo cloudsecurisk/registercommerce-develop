@@ -1,0 +1,108 @@
+{
+  "server": {
+    "port": 3000,
+    "baseUrl": "api"
+  },
+  "cors": {
+    "origin": "*",
+    "domain": "localhost",
+    "credentials": true,
+    "methods": [
+      "GET",
+      "POST",
+      "PATCH",
+      "DELETE",
+      "PUT"
+    ]
+  },
+  "redisUri": {
+    "url": "redis://redis:6379"
+  },
+  "belugaOauth": {
+    "base": "http://beluga-oauth-api:3000",
+    "url": "http://beluga-oauth-api:3000/oauth/permission"
+  },
+  "bucket": {
+    "url": "https://storage.googleapis.com/",
+    "name": "beluga-development",
+    "keyFilename": "/usr/src/register-commerce-service/ecommerce.buckets.account.json",
+    "projectId": "beluga-development",
+    "commerceDocuments": "ecommerce/"
+  },
+  "bucketSublai": {
+    "url": "https://storage.googleapis.com/",
+    "name": "beluga-development",
+    "keyFilename": "/usr/src/register-commerce-service/ecommerce.buckets.account.json",
+    "projectId": "beluga-development",
+    "commerceDocuments": "ecommerce/"
+  },
+  "sublai": {
+    "url": "https://onboarding-dot-espiral-staging.uc.r.appspot.com",
+    "apikey": "040d721d-4c15-4b32-96cf-8c61b7bcd087"
+  },
+  "cincel": {
+    "apikey": "dUT4phZpS_QGdJNEbvyM0jaMW7GOKA23uufc13LT",
+    "createDocUrl": "https://sandbox.api.cincel.digital/v3/teams/a849647a-b5af-4102-877f-36a15f0263ae/folders/200c2182-51d0-b857-6de2-ca89f3be3049/documents",
+    "jwtUrl": "https://sandbox.api.cincel.digital/v3/tokens/jwt",
+    "email": "fermin.jimenez@espiralapp.com",
+    "pass": "Burrito123",
+    "token": "ZmVybWluLmppbWVuZXpAZXNwaXJhbGFwcC5jb206QnVycml0bzEyMw=="
+  },
+  "mpos": {
+    "base": "http://mpos-dashboard-api:3000/api"
+  },
+  "ecommerce": {
+    "base": "http://ecommerce-api:3000/api"
+  },
+  "cards": {
+    "base": "http://cards-service-dashboard:3000/api"
+  },
+  "transfer": {
+    "stpBase": "http://transfers-service-dashboard:3000/api"
+  },
+  "amex": {
+    "base": "http://amex-management:3000/api/"
+  },
+  "sgs": {
+    "token": "{B709CE08-D2DE-4201-962B-3BBAC74C5952}",
+    "pfUrl": "http://calidad.sgspld.com/WSEspiralApp/ServicioInterconexion.svc/PLD/Cliente/DatosGenerales/pf/guardar",
+    "pmUrl": "http://calidad.sgspld.com/WSEspiralApp/ServicioInterconexion.svc/PLD/Cliente/DatosGenerales/pm/guardar"
+  },
+  "report": {
+    "baseURL": "http://beluga-reports:3000/"
+  },
+  "chromiumURL": "/root/.cache/puppeteer/chrome/linux-119.0.6045.105/chrome-linux64/chrome",
+  "weetrust": {
+    "base": "https://api-sandbox.weetrust.com.mx",
+    "userId": "AHh04DDjEFZcjxLe7Gd9PGPbUOh1",
+    "apiKey": "7b174585d8c5331d5882390d8ef9ebe5b8f60775",
+    "webhookId": "b741e6dc30107391eaea78a54a46204268eb6306",
+    "webhookUrl": "https://webhook.site/79b750b2-babd-4534-a7bc-8395bde04bce"
+  },
+  "regcheq": {
+    "base": "https://gt-servicios.com/propld/18900/V1",
+    "apiKey": "KYC-vnUI6JzwL8mx7XuLjYdue3Y20PyzLxD/IQ=="
+  },
+  "allowedServices": [
+    {
+      "hash": "4f47df1bb0b91c3a920241b11d886a5f980fc2c7e5d5aa8580b021b7b1b183f0a02a27291adb79adb3d7ac47c4fc4a8e8f5f2327032d3db9910dcb090d4c521b",
+      "prefix": "c1569b",
+      "name": "Espiral Card Core"
+    },
+    {
+      "hash": "c1bc8fc89613d3b0adf02cab908dbf6b1de2d647d84bc9955006b45d30f533465fcadfbddae0d37f802db79411ed0c3e44954cc5f421301e03aa6e5c05bf39ac",
+      "prefix": "7e835e",
+      "name": "Espiral Card Core"
+    },
+    {
+      "hash": "d25f5fe9143c60218d8595a88fb2bbe59fb6b05d12d82f45fddfc06f6497673913309f448aca51fe041b1c752c09cd9369dd7c658e85552bd98f8bdd35651af1",
+      "prefix": "15b5e0",
+      "name": "weetrust"
+    },
+    {
+      "hash": "f558aa6f319b2f2a910a49925d10dab1fbf1c51efe9129e62135afb82febb458948fbc5cb179eae19aa9aac07f5090bc0a56bb4406360c6ad58aafb75d4f1330",
+      "prefix": "5a2842",
+      "name": "mpos-transactions"
+    }
+  ]
+}

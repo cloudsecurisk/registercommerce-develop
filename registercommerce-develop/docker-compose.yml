@@ -1,0 +1,18 @@
+services:
+  register-commerce-service:
+    build: .
+    container_name: 'register-commerce-service'
+    command: 'pm2 start config/dev.pm2.json --no-daemon'
+    environment:
+      - NODE_ENV=dev
+      - GOOGLE_APPLICATION_CREDENTIALS=/usr/src/register-commerce-service/ecommerce.buckets.account.json
+    ports:
+      - '3015:3000'
+    volumes:
+      - ./:/usr/src/register-commerce-service
+    networks:
+      - belugapay
+networks:
+  belugapay:
+    external: true
+

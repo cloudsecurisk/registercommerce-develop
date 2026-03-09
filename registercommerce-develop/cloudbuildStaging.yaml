@@ -1,0 +1,63 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}:v1.0.2', '.']
+
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}:v1.0.2']
+
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: 'gcloud'
+  args: [
+      'run',
+      'deploy',
+      'commerce-inf-service-staging',
+      '--ingress=internal-and-cloud-load-balancing',
+      '--image',
+      '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}:v1.0.2',
+      '--allow-unauthenticated',
+      '--port=3000',
+      '--vpc-connector=projects/vpc-host-prod-wq299-gq507/locations/us-central1/connectors/svpca-uscentral1-prod',
+      '--vpc-egress=private-ranges-only',
+      '--region=us-central1',
+      '--project=espiral-sg-commerceinfo-prd',
+      '--set-secrets=NODE_ENV=NODE_ENV_STAGING:latest,DB_API_USER_COMMERCE=DB_API_USER_COMMERCE_STAGING:latest,DB_API_PASSWORD_COMMERCE=DB_API_PASSWORD_COMMERCE_STAGING:latest,DB_API_SCHEMA_COMMERCE=DB_API_SCHEMA_COMMERCE_STAGING:latest,DB_API_HOST_COMMERCE=DB_API_HOST_COMMERCE:latest,COMMERCE_DB_CERT_PRD=COMMERCE_DB_CERT_PRD:latest,COMMERCE_DB_CA_PRD=COMMERCE_DB_CA_PRD:latest,COMMERCE_DB_PRIVATE_KEY_PRD=COMMERCE_DB_PRIVATE_KEY_PRD:latest'
+    ]
+  secretEnv:
+    - NODE_ENV
+    - DB_API_USER_COMMERCE
+    - DB_API_PASSWORD_COMMERCE
+    - DB_API_SCHEMA_COMMERCE
+    - DB_API_HOST_COMMERCE
+    - COMMERCE_DB_CERT_PRD
+    - COMMERCE_DB_CA_PRD
+    - COMMERCE_DB_PRIVATE_KEY_PRD
+
+availableSecrets:
+  secretManager:
+    - versionName: projects/452521962768/secrets/NODE_ENV_STAGING/versions/latest
+      env: NODE_ENV
+    - versionName: projects/452521962768/secrets/DB_API_USER_COMMERCE_STAGING/versions/latest
+      env: DB_API_USER_COMMERCE
+    - versionName: projects/452521962768/secrets/DB_API_PASSWORD_COMMERCE_STAGING/versions/latest
+      env: DB_API_PASSWORD_COMMERCE
+    - versionName: projects/452521962768/secrets/DB_API_SCHEMA_COMMERCE_STAGING/versions/latest
+      env: DB_API_SCHEMA_COMMERCE
+    - versionName: projects/452521962768/secrets/DB_API_HOST_COMMERCE/versions/latest
+      env: DB_API_HOST_COMMERCE
+    - versionName: projects/452521962768/secrets/COMMERCE_DB_CERT_PRD/versions/latest
+      env: COMMERCE_DB_CERT_PRD
+    - versionName: projects/452521962768/secrets/COMMERCE_DB_CA_PRD/versions/latest
+      env: COMMERCE_DB_CA_PRD
+    - versionName: projects/452521962768/secrets/COMMERCE_DB_PRIVATE_KEY_PRD/versions/latest
+      env: COMMERCE_DB_PRIVATE_KEY_PRD
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+substitutions:
+  _REGION: 'us-central1'
+  _REPOSITORY: 'commerce-info-staging'
+  _IMAGE: 'commerce-info-staging-image'
+
+images:
+- '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}:v1.0.2'

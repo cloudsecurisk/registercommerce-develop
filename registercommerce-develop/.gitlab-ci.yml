@@ -1,0 +1,16 @@
+image: node:16.13-slim
+
+stages:
+  - linter
+
+default:
+  before_script:
+    - npm install
+
+cache:
+  paths:
+    - node_modules
+
+linter:
+  stage: linter
+  script: npm run lint

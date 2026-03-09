@@ -1,0 +1,3 @@
+# auto generated files from sequelize
+models/index.js
+jest.config.js
